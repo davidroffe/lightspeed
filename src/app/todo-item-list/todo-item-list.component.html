@@ -1,0 +1,50 @@
+<section class="container">
+  <h1>
+    <span>Leanne Graham's Todos</span>
+    <a routerLinkActive="active"
+    routerLink="/"
+    mat-raised-button
+    color="primary">Back</a>
+  </h1>
+  <mat-form-field class="form-field">
+    <mat-label>Sort by</mat-label>
+    <mat-select
+    panelClass="mat-select"
+    [value]="'id'"
+    (selectionChange)="toggleSort($event)">
+      <mat-option [value]="'id'">
+        ID
+      </mat-option>
+      <mat-option [value]="'alpha'">
+        A-Z
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-card class="todo-list">
+  <mat-selection-list
+  #todos>
+    <mat-list-option
+    color="primary"
+    disableRipple="true"
+    checkboxPosition="before"
+    *ngFor="let todo of todoList"
+    [value]="todo"
+    [selected]="todo.completed"
+    (click)="toggleCompleted(todo)">
+      <div class="list-text-inner">
+        <span [ngClass]="todo.completed ? 'completed' : ''">{{todo.title}}</span>
+        <button
+        mat-icon-button
+        color="disabled"
+        aria-label="icon button with a delete icon"
+        (click)="deleteItem($event, todo)">
+          <mat-icon>delete</mat-icon>
+      </button>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+</mat-card>
+  <p *ngIf="todos">
+    {{todos.selectedOptions.selected.length}} / {{todoList.length}}
+  </p>
+</section>

@@ -1,0 +1,42 @@
+.container {
+  max-width: 560px;
+  margin: auto;
+
+  h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 30px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+  }
+
+  .todo-list {
+    margin-top: 20px;
+  }
+
+  .form-field {
+    width: 150px;
+
+    .mat-select {
+      width: 150px;
+    }
+  }
+
+  .list-text-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .completed {
+      text-decoration: line-through;
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    margin: 25px;
+  }
+}

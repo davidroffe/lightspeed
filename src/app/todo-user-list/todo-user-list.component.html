@@ -1,0 +1,65 @@
+<section class="container">
+  <h1>Users</h1>
+  <mat-card
+    [ngClass]="accordionItem.expanded ? 'open' : 'closed'"
+    *ngFor="let todoUser of todoStoreService.todoUsers$ | async">
+    <div class="card-top">
+      <div class="inner">
+        <h3>{{todoUser.name}}</h3>
+        <div class="details">
+          <span>
+            <mat-icon aria-hidden="false" aria-label="Phone icon" class="icon-display">phone</mat-icon>
+            <span>{{formatPhone(todoUser.phone)}}</span>
+          </span>
+          <span>
+            <mat-icon aria-hidden="false" aria-label="Mail icon" class="icon-display">mail</mat-icon>
+            <span title="{{todoUser.email}}">{{todoUser.email}}</span>
+          </span>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="icon button with a right-chevron icon"
+        (click)="accordionItem.toggle()"
+        class="expander">
+        <mat-icon [ngClass]="['icon', accordionItem.expanded ? 'open' : 'closed']">chevron_right</mat-icon>
+      </button>
+    </div>
+    <cdk-accordion class="accordion">
+      <cdk-accordion-item
+        #accordionItem="cdkAccordionItem"
+        class="accordion-item"
+        [attr.aria-expanded]="accordionItem.expanded">
+        <div
+          class="accordion-item-body"
+          [style.display]="accordionItem.expanded ? '' : 'none'">
+          <div class="address">
+            <span class="material-icons icon-display">
+              pin_drop
+            </span>
+            <span class="address-text">
+              <span>{{todoUser.address.street}}</span>
+              <span>{{todoUser.address.city}}, {{todoUser.address.zipcode}}</span>
+            </span>
+          </div>
+          <mat-divider></mat-divider>
+          <a
+          routerLinkActive="active"
+          routerLink="/item-list/user/{{todoUser.id}}"
+          mat-button
+          class="view-todos">
+            <span class="inner">
+              <span>
+                View Todos
+              </span>
+              <span class="material-icons">
+                arrow_right_alt
+              </span>
+            </span>
+          </a>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </mat-card>
+</section> 
